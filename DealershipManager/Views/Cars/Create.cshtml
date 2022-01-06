@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@model DealershipManager.Models.Car
+
+<h1>Add a new car: </h1>
+
+@using (Html.BeginForm())
+{
+  @Html.Label("Select Dealership")
+  @Html.DropDownList("DealershipId")
+
+  @Html.LabelFor(model => model.Year)
+  @Html.TextBoxFor(model => model.Year,
+  new {required="required"})
+
+  @Html.LabelFor(model => model.Make)
+  @Html.TextBoxFor(model => model.Make,
+  new {required="required"})
+
+  @Html.LabelFor(model => model.Model)
+  @Html.TextBoxFor(model => model.Model,
+  new {required="required"})
+
+  <input type="submit" value="Add new car" class="btn btn-lg btn-dark"/>
+}
+
+<p>@Html.ActionLink("return to cars page", "Index")</p>
+<p>@Html.ActionLink("Return to homepage", "Index", "Home")</p>

@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@model DealershipManager.Models.Car
+
+<h1>Car Details:</h2>
+<hr>
+<h2>@Html.DisplayNameFor(model => model.Year): @Html.DisplayFor(model => model.Year)</h2>
+<h2>@Html.DisplayNameFor(model => model.Make) : @Html.DisplayFor(model => model.Make)</h2>
+<h2>@Html.DisplayNameFor(model => model.Model) : @Html.DisplayFor(model => model.Model)</h2>
+
+<h3>Dealerships:</h3>
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This car is not at any dealerships</p>
+}
+@foreach (var join in Model.JoinEntities)
+{
+  <li>@join.Dealership.Name</li>
+  @using (Html.BeginForm("DeleteDealership", "Cars"))
+  {
+    @Html.Hidden("joinId", @join.CarDealershipId)
+    <input type="submit" value="Delete" class="btn btn-lg btn-dark"/>
+  }
+}
+
+<p>@Html.ActionLink("Edit car", "Edit", new { id = Model.CarId })</p>
+<p>@Html.ActionLink("Add a new dealership to this car", "AddDealership", new { id = Model.CarId })</p>
+<p>@Html.ActionLink("Delete this car", "Delete", new { id = Model.CarId })</p>
+<p>@Html.ActionLink("Create a new dealership", "Create")</p>
+<p>@Html.ActionLink("return to cars page", "Index")</p>

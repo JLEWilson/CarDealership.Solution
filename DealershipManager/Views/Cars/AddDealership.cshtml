@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+@model DealershipManager.Models.Car
+
+<h2>Add a dealership</h2>
+
+<h4>Add dealership to this car: @Html.DisplayFor(model => model.Year), @Html.DisplayFor(model => model.Make), @Html.DisplayFor(model => model.Model)</h4>
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.CarId)
+
+  @Html.Label("Select dealership")
+  @Html.DropDownList("DealershipId")
+
+  <input type="submit" value="Save" class="btn btn-lg btn-dark"/>
+}
+
+<p>@Html.ActionLink("Back to car list", "Index")</p>

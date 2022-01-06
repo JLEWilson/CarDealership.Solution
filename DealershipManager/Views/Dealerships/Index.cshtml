@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@using DealershipManager.Models
+@model List<DealershipManager.Models.Dealership>
+
+<h1>All Dealerships:</h1>
+
+@if(@Model.Count == 0)
+{
+  <h3>No dealerships have been added yet.</h3>
+}
+
+@foreach(Dealership dealership in Model)
+{
+  <li>@Html.ActionLink($"{dealership.Name}", "Details", new { id = dealership.DealershipId})</li>
+}
+
+<p>@Html.ActionLink("Add a new dealership", "Create")</p>
+<p>@Html.ActionLink("Return to homepage", "Index", "Home")</p>

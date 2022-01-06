@@ -1,0 +1,36 @@
+@{
+  Layout = "_Layout";
+}
+
+@model DealershipManager.Models.Car
+
+<h1>Edit car: </h1>
+<h4>Edit this car: @Html.DisplayFor(model => model.Year), @Html.DisplayFor(model => model.Make), @Html.DisplayFor(model => model.Model)</h4>
+@*
+If you change the dealership the car will now be a part of both the new and old
+*@
+@using (Html.BeginForm())
+{
+  @Html.Label("Select Dealership")
+  @Html.DropDownList("DealershipId")
+
+  @Html.HiddenFor(model => model.CarId)
+
+  @Html.LabelFor(model => model.Year)
+  @Html.TextBoxFor(model => model.Year,
+  new {required="required"})
+
+  @Html.LabelFor(model => model.Make)
+  @Html.TextBoxFor(model => model.Make,
+  new {required="required"})
+
+  @Html.LabelFor(model => model.Model)
+  @Html.TextBoxFor(model => model.Model,
+  new {required="required"})
+
+  <input type="submit" value="Add new car" class="btn btn-lg btn-dark"/>
+}
+
+<p>@Html.ActionLink("Delete this car", "Delete", new { id = Model.CarId })</p>
+<p>@Html.ActionLink("return to cars page", "Index")</p>
+<p>@Html.ActionLink("Return to homepage", "Index", "Home")</p>

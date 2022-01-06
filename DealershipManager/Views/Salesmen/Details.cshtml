@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@model DealershipManager.Models.Salesman
+
+<h1>Salesman Details:</h2>
+<hr>
+<h2>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h2>
+
+<h3>Dealerships:</h3>
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This Salesman is not assigned to any dealerships</p>
+}
+@foreach (var join in Model.JoinEntities)
+{
+  <li>@join.Dealership.Name</li>
+  @using (Html.BeginForm("DeleteDealership", "Salesmen"))
+  {
+    @Html.Hidden("joinId", @join.DealershipSalesmanId)
+    <input type="submit" value="Delete" class="btn btn-lg btn-dark"/>
+  }
+}
+
+<p>@Html.ActionLink("Edit salesman", "Edit", new { id = Model.SalesmanId })</p>
+<p>@Html.ActionLink("Add a new dealership to this salesman", "AddDealership", new { id = Model.SalesmanId })</p>
+<p>@Html.ActionLink("Delete this salesman", "Delete", new { id = Model.SalesmanId })</p>
+<p>@Html.ActionLink("Create a new dealership", "Create")</p>
+<p>@Html.ActionLink("return to salesmen page", "Index")</p>

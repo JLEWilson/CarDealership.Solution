@@ -1,0 +1,37 @@
+@{
+  Layout = "_Layout";
+}
+
+@model DealershipManager.Models.Dealership
+@using DealershipManager.Models
+
+<h2>Dealership Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model=> model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+<h3>Cars: </h3>
+@if(@Model.CarEntities.Count == 0)
+{
+  <p>This dealership does not contain any cars.</p>
+}
+
+@foreach(CarDealership join in Model.CarEntities)
+{
+  <li>@Html.ActionLink($"{join.Car.Year}" + " " + $"{join.Car.Make}" + " / " + $"{join.Car.Model}", "Details", "Cars", new { id = join.Car.CarId})</li>
+}
+
+<h3>Salespeople: </h3>
+@if(@Model.SalesmanEntities.Count == 0)
+{
+  <p>This dealership does not contain any salesmen.</p>
+}
+
+@foreach(DealershipSalesman join in Model.SalesmanEntities)
+{
+  <li>@Html.ActionLink($"{join.Salesman.Name}", "Details", "Salesmen", new { id = join.Salesman.SalesmanId})</li>
+}
+
+<p>@Html.ActionLink("Edit Dealership", "Edit", new { id = Model.DealershipId })</p>
+<p>@Html.ActionLink("Delete Dealership", "Delete", new {id = Model.DealershipId})</p>
+<p>@Html.ActionLink("Back to dealerships", "Index")</p>
+<p>@Html.ActionLink("Return to homepage", "Index", "Home")</p>

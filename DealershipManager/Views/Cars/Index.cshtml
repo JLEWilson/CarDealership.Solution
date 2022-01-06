@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@using DealershipManager.Models
+@model List<DealershipManager.Models.Car>
+
+<h1>All Cars:</h1>
+
+@if(@Model.Count == 0)
+{
+  <h3>No cars have been added yet.</h3>
+}
+
+@foreach(Car car in Model)
+{
+  <li>@Html.ActionLink($"{car.Year}" + " " + $"{car.Make}" + " / " + $"{car.Model}", "Details", new { id = car.CarId})</li>
+}
+
+<p></p>
+<p>@Html.ActionLink("Add a new car", "Create")</p>
+<p>@Html.ActionLink("Return to homepage", "Index", "Home")</p>
