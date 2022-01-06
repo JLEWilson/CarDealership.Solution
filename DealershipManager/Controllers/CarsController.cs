@@ -63,17 +63,13 @@ namespace DealershipManager.Controllers
     public ActionResult Edit(int id)
     {
       var thisCar = _db.Cars.FirstOrDefault(car => car.CarId == id);
-      ViewBag.DealershipId = new SelectList(_db.Dealerships, "DealershipId", "Name");
       return View(thisCar);
     }
 
     [HttpPost]
     public ActionResult Edit(Car car, int DealershipId, int PreviousDealershipId)
     {
-      if (DealershipId != 0)
-      {
-        _db.CarDealership.Add(new CarDealership() { DealershipId = DealershipId, CarId = car.CarId });
-      }
+
       _db.Entry(car).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");

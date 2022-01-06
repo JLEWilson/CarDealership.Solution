@@ -11,9 +11,6 @@ If you change the dealership the car will now be a part of both the new and old
 *@
 @using (Html.BeginForm())
 {
-  @Html.Label("Select Dealership")
-  @Html.DropDownList("DealershipId")
-
   @Html.HiddenFor(model => model.CarId)
 
   @Html.LabelFor(model => model.Year)
@@ -28,7 +25,7 @@ If you change the dealership the car will now be a part of both the new and old
   @Html.TextBoxFor(model => model.Model,
   new {required="required"})
 
-  <input type="submit" value="Add new car" class="btn btn-lg btn-dark"/>
+  <input type="submit" value="Submit Edit" class="btn btn-lg btn-dark"/>
 }
 
 <p>@Html.ActionLink("Delete this car", "Delete", new { id = Model.CarId })</p>

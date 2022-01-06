@@ -61,16 +61,6 @@ namespace DealershipManager.Controllers
     public ActionResult Edit(int id)
     {
       var thisSalesman = _db.Salesmen.FirstOrDefault(salesman => salesman.SalesmanId == id);
-      SelectList dbData = new SelectList(_db.Dealerships, "DealershipId", "Name");
-      //Create the select list item you want to add
-      SelectListItem selListItem = new SelectListItem() { Value = "0", Text = "None" };
-      //Create a list of select list items - this will be returned as your select list
-      List<SelectListItem> newList = new List<SelectListItem>();
-      //Add select list item to list of selectlistitems
-      newList.Add(selListItem);
-      newList.AddRange(dbData);
-
-      ViewBag.DealershipId = new SelectList(newList, "Value", "Text", null);
       return View(thisSalesman);
     }
 

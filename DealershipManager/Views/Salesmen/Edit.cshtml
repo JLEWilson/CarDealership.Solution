@@ -11,8 +11,6 @@ If you change the dealership the salesman will now be a part of both the new and
 *@
 @using (Html.BeginForm())
 {
-  @Html.Label("Select Dealership")
-  @Html.DropDownList("DealershipId")
 
   @Html.HiddenFor(model => model.SalesmanId)
 
